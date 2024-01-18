@@ -13,9 +13,11 @@ describe('AppService', () => {
     service = app.get<AppService>(AppService);
   });
 
-  describe('getData', () => {
-    it('should return "Hello API"', () => {
-      expect(service.getData()).toEqual({ message: 'Hello API' });
+  describe('getStatus', () => {
+    it('should return "Client-service is up and running"', () => {
+      expect(service.getStatus()).toEqual({
+        message: 'Client-service is up and running',
+      });
     });
   });
 });
