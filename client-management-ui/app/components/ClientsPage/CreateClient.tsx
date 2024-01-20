@@ -54,7 +54,7 @@ export function CreateClient() {
           <ModalHeader>Modal Title</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            {true ? (
+            {isLoading && !hasError ? (
               <VStack my="auto" w="100%">
                 <Spinner thickness="8px" w={40} h={40} color="#503F63" />
               </VStack>
