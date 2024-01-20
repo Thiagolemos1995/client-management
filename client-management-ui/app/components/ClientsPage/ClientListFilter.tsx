@@ -9,7 +9,7 @@ export default function ClientListFilter() {
     <Card w="100%">
       <CardBody>
         <Flex>
-          <FormInput label="Nome" />
+          <FormInput w={{ sm: '250px', md: '450px' }} label="Nome" />
 
           <IconButton
             mt="auto"

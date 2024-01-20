@@ -29,6 +29,11 @@ export function CreateClient() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { createNewClient, hasError, isLoading } = useCreateClient();
 
+  async function handleCreateClient() {
+    await createNewClient(name, email, phone);
+    onClose();
+  }
+
   return (
     <>
       <Button
@@ -60,7 +65,7 @@ export function CreateClient() {
               </VStack>
             ) : !isLoading && hasError ? (
               <VStack>
-                <Icon as={WarningTwoIcon} color="red.500" />
+                <Icon w={40} h={40} as={WarningTwoIcon} color="#503F63" />
                 <Text>Desculpe, ocorreu um erro ao criar esse cliente</Text>
               </VStack>
             ) : (
@@ -87,28 +92,30 @@ export function CreateClient() {
             )}
           </ModalBody>
 
-          <ModalFooter>
-            <Button
-              w="full"
-              variant="ghost"
-              colorScheme="purple"
-              mr={3}
-              onClick={onClose}
-            >
-              Close
-            </Button>
-            <Button
-              w="full"
-              bgColor="#503F63"
-              _hover={{
-                bgColor: '#201928',
-              }}
-              color="white"
-              onClick={() => createNewClient(name, email, phone)}
-            >
-              Criar
-            </Button>
-          </ModalFooter>
+          {!isLoading && !hasError && (
+            <ModalFooter>
+              <Button
+                w="full"
+                variant="ghost"
+                colorScheme="purple"
+                mr={3}
+                onClick={onClose}
+              >
+                Close
+              </Button>
+              <Button
+                w="full"
+                bgColor="#503F63"
+                _hover={{
+                  bgColor: '#201928',
+                }}
+                color="white"
+                onClick={handleCreateClient}
+              >
+                Criar
+              </Button>
+            </ModalFooter>
+          )}
         </ModalContent>
       </Modal>
     </>
