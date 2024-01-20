@@ -97,13 +97,13 @@ Utilizando o WSL2:
       `\c clients`
 
   - Criando a tabela de clients:
-      ``` CREATE TABLE [IF NOT EXISTS] clients (
+      ` CREATE TABLE [IF NOT EXISTS] clients (
           id uuid DEFAULT uuid_generate_v4 (),
           name VARCHAR NOT NULL,
           email VARCHAR NOT NULL,
           phone VARCHAR NOT NULL,
           PRIMARY KEY (id)
-      );
+      );`
 
   - Pronto, para confirmar se a tabela foi criada, execute o comando:
   
@@ -118,13 +118,22 @@ Com o repositório aberto, abra um terminal e execute os comandos:
   - Para rodar a client-ui (aplicação front-end):
       `yarn client-ui` ou `npm run client-ui`
 
+## DDL
+  - `CREATE EXTENSION IF NOT EXISTS "uuid-ossp";` ,
+  - `SELECT uuid_generate_v4();` ,
+  - `CREATE DATABASE clients;` ,
+  - `CREATE TABLE [IF NOT EXISTS] clients (id uuid DEFAULT uuid_generate_v4 (), name VARCHAR NOT NULL, email VARCHAR NOT NULL, phone VARCHAR NOT NULL, PRIMARY KEY (id));` ,
+  - `SELECT * FROM clients;`,
+  - `SELECT * FROM clients WHERE name LIKE '%${name}%';` ,
+  - `INSERT INTO clients (name, email, phone) VALUES ('${createClient.name}', '${createClient.email}', '${createClient.phone}') RETURNING *;` ;
+
 # Próximos passos 
 - Implementação de um docker file e docker-compose para subir as imagens e os serviços de forma automática,
 - Adicionar a informação de coordenada (x,y) aos clientes da plataforma,
 - Adicionar o serviço de calculo de menor Rota entre os clientes,
 - Adicionar integração no filtro da tela de Lista de 'Clientes',
-- Adicionar controller para edição de clientes;
-- Adicionar controller para deletar clientes;
-- Adicionar gerenciamento de status via Proxy na client-ui, utilizando Valtio
+- Adicionar controller para edição de clientes,
+- Adicionar controller para deletar clientes,
+- Adicionar gerenciamento de status via Proxy na client-ui, utilizando Valtio;
   
   Obs: Não foi possível desenvolver por completo, pois minha máquina esta estourando o uso de memória ao rodar as aplicações + base de dados no WSL2.
